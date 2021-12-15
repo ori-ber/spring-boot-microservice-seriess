@@ -24,12 +24,12 @@ public class InventoryController {
         this.inventoryItemRepository = inventoryItemRepository;
     }
 
-    @GetMapping("/api/inventory/{productCode}")
+    @GetMapping("/api/inventory/{productCode}/{id}")
     @HystrixCommand
     public ResponseEntity<InventoryItem> findInventoryByProductCode(@PathVariable("productCode") String productCode) {
-        log.info("Finding inventory for product code :"+productCode);
+        log.info("Finding inventory for product code :" + productCode);
         Optional<InventoryItem> inventoryItem = inventoryItemRepository.findByProductCode(productCode);
-        if(inventoryItem.isPresent()) {
+        if (inventoryItem.isPresent()) {
             return new ResponseEntity(inventoryItem, HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
