@@ -24,7 +24,7 @@ public class InventoryController {
         this.inventoryItemRepository = inventoryItemRepository;
     }
 
-    @GetMapping("/api/inventory/{productCode}/{id}")
+    @GetMapping("/api/inventory/{productCode}")
     @HystrixCommand
     public ResponseEntity<InventoryItem> findInventoryByProductCode(@PathVariable("productCode") String productCode) {
         log.info("Finding inventory for product code :" + productCode);
